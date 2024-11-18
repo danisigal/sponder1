@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "430688060632",
+    "project_id": "sponder-f4607",
+    "storage_bucket": "sponder-f4607.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:430688060632:android:aee4f7ef8f82f56c6983ad",
+        "android_client_info": {
+          "package_name": "com.example.sponder"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxXR4Huw3YphqCpwSqqWYmn5uS6vd8kGs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
