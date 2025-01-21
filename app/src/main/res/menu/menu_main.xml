@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <menu xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+        <item
+            android:id="@+id/action_home"
+            android:title="דף הבית"
+            app:showAsAction="never" />
+        <item
+            android:id="@+id/action_search_sponsors"
+            android:title="חיפוש ספונסרים"
+            app:showAsAction="never" />
+        <item
+            android:id="@+id/action_profile"
+            android:title="פרופיל אישי"
+            app:showAsAction="never" />
+        <item
+            android:id="@+id/action_create_campaign"
+            android:title="יצירת קמפיין"
+            app:showAsAction="never" />
+        <item
+            android:id="@+id/action_manage_campaigns"
+            android:title="ניהול קמפיינים"
+            app:showAsAction="never" />
+        <item
+            android:id="@+id/action_chat"
+            android:title="צ'אט"
+            app:showAsAction="never" />
+    </menu>
+</PreferenceScreen>

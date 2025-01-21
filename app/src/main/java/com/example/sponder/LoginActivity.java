@@ -52,7 +52,7 @@ public class LoginActivity extends AppCompatActivity {
                     auth.signInWithCredential(authCredential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()) {
+                         if (task.isSuccessful()) {
                                 auth = FirebaseAuth.getInstance();
                                 Glide.with(LoginActivity.this).load(Objects.requireNonNull(auth.getCurrentUser()).getPhotoUrl()).into(imageView);
                                 name.setText(auth.getCurrentUser().getDisplayName());
