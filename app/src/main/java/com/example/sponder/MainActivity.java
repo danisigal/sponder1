@@ -15,6 +15,8 @@ import com.example.sponder.ManageCampaignsActivity;
 import com.example.sponder.ProfileActivity;
 import com.example.sponder.R;
 import com.example.sponder.SearchSponsorsActivity;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -53,6 +55,12 @@ public class MainActivity extends AppCompatActivity {
         if (item.getItemId() == R.id.action_chat) {
             startActivity(new Intent(this, ChatActivity.class));
         }
+        // Write a message to the database
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("message");
+
+        myRef.setValue("Hello, World!");
             return super.onOptionsItemSelected(item);
+
     }
 }
