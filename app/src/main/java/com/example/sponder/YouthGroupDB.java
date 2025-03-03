@@ -25,14 +25,14 @@ public class YouthGroupDB extends AppCompatActivity {
     public static class YouthGroup {
         private String youthGroupName;
         private String email;
-        private int amountRequest;
+        private double amountRequest;
         private String place;
 
         public YouthGroup() {
             // Default constructor required for calls to DataSnapshot.getValue(YouthGroup.class)
         }
 
-        public YouthGroup(String youthGroupName, String email, int amountRequest, String place) {
+        public YouthGroup(String youthGroupName, String email, double amountRequest, String place) {
             this.youthGroupName = youthGroupName;
             this.email = email;
             this.amountRequest = amountRequest;
@@ -56,11 +56,11 @@ public class YouthGroupDB extends AppCompatActivity {
             this.email = email;
         }
 
-        public int getAmountRequest() {
+        public double getAmountRequest() {
             return amountRequest;
         }
 
-        public void setAmountRequest(int amountRequest) {
+        public void setAmountRequest(double amountRequest) {
             this.amountRequest = amountRequest;
         }
 

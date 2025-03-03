@@ -7,15 +7,71 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+
+    <!-- Sponsor Button -->
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="#4CAF50"
+        android:background="#6305dc"
         android:elevation="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
         app:title="Sponder"
         app:titleTextColor="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/descriptionTextView"
+        android:layout_width="393dp"
+        android:layout_height="336dp"
+        android:lineSpacingExtra="8dp"
+        android:text="Welcome to our innovative app that connects sponsors with youth groups! Our platform is designed to bridge the gap between generous sponsors and ambitious youth organizations, fostering growth and opportunity.
+
+            \n\nKey Features:
+            \n• Easy Registration: Sign up as a sponsor or a youth group in just a few steps.
+            \n• Secure Matching: Our algorithm ensures the best matches between sponsors and youth groups.
+            \n• Transparent Communication: Built-in messaging system for clear and direct communication.
+            \n• Progress Tracking: Keep track of sponsorships and their impact over time.
+
+            \n\nWhether you're looking to make a difference as a sponsor or seeking support for your youth initiative, our app provides the perfect platform to connect, collaborate, and create positive change in communities."
+        android:textColor="#333333"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.243" />
+
+    <Button
+        android:id="@+id/btnSponsor"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#6305dc"
+        android:text="Register as Sponsor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.897" />
+
+    <!-- Youth Group Button -->
+    <Button
+        android:id="@+id/btnYouthGroup"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="#6305dc"
+        android:text="Register as Youth Group"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnSponsor" />
 
     <!-- שאר תוכן ה-layout שלך כאן -->
 

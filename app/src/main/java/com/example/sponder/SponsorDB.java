@@ -23,7 +23,7 @@ public class SponsorDB extends AppCompatActivity {
 
     public static class Sponsor {
         private String sponsorName;
-        private int amount;
+        private double amount;
         private String email;
         private String place;
 
@@ -31,7 +31,7 @@ public class SponsorDB extends AppCompatActivity {
             // Default constructor required for calls to DataSnapshot.getValue(Sponsor.class)
         }
 
-        public Sponsor(String sponsorName, int amount, String email,String place) {
+        public Sponsor(String sponsorName, double amount, String email,String place) {
             this.sponsorName = sponsorName;
             this.amount = amount;
             this.email = email;
@@ -47,11 +47,11 @@ public class SponsorDB extends AppCompatActivity {
             this.sponsorName = sponsorName;
         }
 
-        public int getAmount() {
+        public double getAmount() {
             return amount;
         }
 
-        public void setAmount(int amount) {
+        public void setAmount(double amount) {
             this.amount = amount;
         }
 
