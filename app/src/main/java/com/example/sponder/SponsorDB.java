@@ -51,7 +51,7 @@ public class SponsorDB extends AppCompatActivity {
             return amount;
         }
 
-        public void setAmount(double amount) {
+        public void setAmount(int amount) {
             this.amount = amount;
         }
 

@@ -1,6 +1,7 @@
 package com.example.sponder;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -83,6 +84,7 @@ public class YouthGroupRegistrationActivity extends AppCompatActivity {
                                         });
                             }
                         } else {
+                            Log.e("XXX", task.getException().getMessage());
                             Toast.makeText(YouthGroupRegistrationActivity.this, "Authentication failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     }
