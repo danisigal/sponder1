@@ -7,13 +7,17 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+// מחלקה שמייצגת את מסך/אקטיביטי ניהול הספונסרים (SponsorDB)
 public class SponsorDB extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // הפעלת מצב Edge-to-Edge (עיצוב מודרני)
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_sponser_db);
+
+        // הגדרת מרווחים (Padding) אוטומטית לפי מערכת ההפעלה
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -21,24 +25,25 @@ public class SponsorDB extends AppCompatActivity {
         });
     }
 
+    // מחלקה פנימית שמייצגת אובייקט ספונסר (Sponsor)
     public static class Sponsor {
-        private String sponsorName;
-        private double amount;
-        private String email;
-        private String place;
+        private String sponsorName; // שם הספונסר
+        private double amount;      // סכום התרומה
+        private String email;       // אימייל של הספונסר
+        private String place;       // עיר/מקום מגורים
 
-        public Sponsor() {
-            // Default constructor required for calls to DataSnapshot.getValue(Sponsor.class)
-        }
+        // בנאי ריק - חובה בשביל Firebase (DataSnapshot.getValue)
+        public Sponsor() {}
 
-        public Sponsor(String sponsorName, double amount, String email,String place) {
+        // בנאי עם פרמטרים ליצירת ספונסר חדש
+        public Sponsor(String sponsorName, double amount, String email, String place) {
             this.sponsorName = sponsorName;
             this.amount = amount;
             this.email = email;
             this.place = place;
         }
 
-        // Getters and setters
+        // Getters and setters (מאפשרים גישה ושינוי לערכים של הספונסר)
         public String getSponsorName() {
             return sponsorName;
         }
@@ -51,6 +56,7 @@ public class SponsorDB extends AppCompatActivity {
             return amount;
         }
 
+        // שים לב: כאן בפרמטר זה int, עדיף לשנות ל-double כדי להתאים לשדה
         public void setAmount(int amount) {
             this.amount = amount;
         }

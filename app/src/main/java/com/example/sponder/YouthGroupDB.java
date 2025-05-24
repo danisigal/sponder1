@@ -7,13 +7,17 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+// אקטיביטי שמייצג מסך/ניהול קבוצות נוער
 public class YouthGroupDB extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // הפעלת מצב Edge-to-Edge (עיצוב מודרני)
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_youth_group_db);
+
+        // הגדרת מרווחים (Padding) אוטומטית לפי מערכת ההפעלה
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -21,17 +25,17 @@ public class YouthGroupDB extends AppCompatActivity {
         });
     }
 
-    // Moved outside of onCreate and renamed
+    // מחלקה פנימית שמייצגת אובייקט קבוצת נוער (YouthGroup)
     public static class YouthGroup {
-        private String youthGroupName;
-        private String email;
-        private double amountRequest;
-        private String place;
+        private String youthGroupName; // שם קבוצת הנוער
+        private String email;          // אימייל של הקבוצה
+        private double amountRequest;  // סכום הבקשה
+        private String place;          // עיר/מקום
 
-        public YouthGroup() {
-            // Default constructor required for calls to DataSnapshot.getValue(YouthGroup.class)
-        }
+        // בנאי ריק - חובה בשביל Firebase (DataSnapshot.getValue)
+        public YouthGroup() {}
 
+        // בנאי עם פרמטרים ליצירת קבוצה חדשה
         public YouthGroup(String youthGroupName, String email, double amountRequest, String place) {
             this.youthGroupName = youthGroupName;
             this.email = email;
@@ -39,7 +43,7 @@ public class YouthGroupDB extends AppCompatActivity {
             this.place = place;
         }
 
-        // Getters and setters
+        // Getters and setters (מאפשרים גישה ושינוי לערכים של הקבוצה)
         public String getYouthGroupName() {
             return youthGroupName;
         }
