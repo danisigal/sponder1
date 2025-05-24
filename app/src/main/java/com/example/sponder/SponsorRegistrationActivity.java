@@ -1,116 +1,93 @@
 package com.example.sponder;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
-import com.example.sponder.R;
-import com.example.sponder.SponsorAdapter;
-import com.example.sponder.SponsorDB;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
+import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
-import com.yuyakaido.android.cardstackview.CardStackLayoutManager;
-import com.yuyakaido.android.cardstackview.CardStackListener;
-import com.yuyakaido.android.cardstackview.CardStackView;
-import com.yuyakaido.android.cardstackview.Direction;
-
-import java.util.ArrayList;
-import java.util.List;
-
-public  class SponsorRegistrationActivity extends AppCompatActivity implements CardStackListener {
-
-    private CardStackLayoutManager manager;
-    private SponsorAdapter adapter;
-    private CardStackView cardStackView;
-    private List<SponsorDB.Sponsor> sponsors;
-
-    @Override
-    public void onCardDisappeared(View view, int position) {
-
-    }
-
-    public void onCardAppeared(View view, int position) {
-
-    }
-
-    public void onCardCanceled() {
-
-    }
-
-    public void onCardRewound() {
-
-    }
-
-    @Override
-    public void onCardDragging(Direction direction, float ratio) {
-
-    }
+public class SponsorRegistrationActivity extends AppCompatActivity {
+    private EditText etSponsorName, etAmount, etEmail, etPlace, etPassword;
+    private Button btnRegister;
+    private FirebaseAuth mAuth;
+    private DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search_sponsors);
+        setContentView(R.layout.activity_sponsor_registration);
 
-        CardStackView cardStackView = findViewById(R.id.card_stack_view);
-        manager = new CardStackLayoutManager(this, this);
+        mAuth = FirebaseAuth.getInstance();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
 
-        adapter = new SponsorAdapter(this, new ArrayList<>());
-        cardStackView.setLayoutManager(manager);
-        cardStackView.setAdapter(adapter);
+        etSponsorName = findViewById(R.id.etSponsorName);
+        etAmount = findViewById(R.id.etAmount);
+        etEmail = findViewById(R.id.etEmail);
+        etPlace = findViewById(R.id.etPlace);
+        etPassword = findViewById(R.id.etPassword);
+        btnRegister = findViewById(R.id.btnRegister);
 
-        fetchSponsors();
-    }
-
-    private void fetchSponsors() {
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("sponsors");
-
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onDataChange(DataSnapshot snapshot) {
-                sponsors = new ArrayList<>();
-                for (DataSnapshot data : snapshot.getChildren()) {
-                    SponsorDB.Sponsor sponsor = data.getValue(SponsorDB.Sponsor.class);
-                    if (sponsor != null) {
-                        sponsors.add(sponsor);
-                    }
-                }
-                adapter.setSponsors(sponsors);
-                adapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Handle error
+            public void onClick(View v) {
+                registerSponsor();
             }
         });
     }
 
-    @Override
-    public void onCardSwiped(Direction direction) {
-        if (direction == Direction.Right) {
-            int position = manager.getTopPosition() - 1;
-            if (position >= 0 && position < sponsors.size()) {
-                SponsorDB.Sponsor sponsor = sponsors.get(position);
-                showSponsorInfoDialog(sponsor);
-            }
-        }
-    }
-    private void showSponsorInfoDialog(SponsorDB.Sponsor sponsor) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Sponsor Information")
-                .setMessage("Name: " + sponsor.getSponsorName() + "\n" +
-                        "Amount: " + sponsor.getAmount() + "\n" +
-                        "Email: " + sponsor.getEmail() + "\n" +
-                        "Place: " + sponsor.getPlace())
-                .setPositiveButton("OK", (dialog, id) -> {
-                    // Dialog closes when OK is clicked
+    private void registerSponsor() {
+        final String sponsorName = etSponsorName.getText().toString().trim();
+        final double amount = Double.parseDouble(etAmount.getText().toString().trim());
+        final String email = etEmail.getText().toString().trim();
+        final String place = etPlace.getText().toString().trim();
+        String password = etPassword.getText().toString().trim();
+
+        mAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            if (user != null) {
+                                SponsorDB.Sponsor sponsor = new SponsorDB.Sponsor(sponsorName, amount, email,place);
+                                mDatabase.child("sponsors").child(user.getUid()).setValue(sponsor)
+                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void aVoid) {
+                                                Toast.makeText(SponsorRegistrationActivity.this, "Sponsor registered successfully", Toast.LENGTH_SHORT).show();
+                                                finish();
+                                            }
+                                        })
+                                        .addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                Toast.makeText(SponsorRegistrationActivity.this, "Failed to register Sponsor", Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+                            }
+                        } else {
+                            Log.e("XXX", task.getException().getMessage());
+                            Toast.makeText(SponsorRegistrationActivity.this, "Authentication failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
                 });
-        builder.create().show();
     }
 }
