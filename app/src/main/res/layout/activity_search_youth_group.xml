@@ -7,7 +7,7 @@
         android:id="@+id/card_stack_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:contentDescription="sponsor application"/>
+        android:contentDescription="youth group application"/>
 
     <Button
         android:id="@+id/button_back_to_home"

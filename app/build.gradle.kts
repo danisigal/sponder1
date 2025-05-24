@@ -49,4 +49,5 @@ dependencies {
     implementation("com.github.bumptech.glide:glide:4.16.0")
     implementation ("com.google.firebase:firebase-database:20.0.4")
     implementation ("com.github.yuyakaido:CardStackView:v2.3.4")
+    implementation("androidx.core:core-ktx:1.9.0")
 }

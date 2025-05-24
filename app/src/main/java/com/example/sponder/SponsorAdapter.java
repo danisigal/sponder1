@@ -63,4 +63,7 @@ public class SponsorAdapter extends RecyclerView.Adapter<SponsorAdapter.ViewHold
             this.sponsors = sponsors;
         }
     }
+    public void setSponsors(List<SponsorDB.Sponsor> sponsors) {
+        this.sponsors = sponsors;
+    }
 }

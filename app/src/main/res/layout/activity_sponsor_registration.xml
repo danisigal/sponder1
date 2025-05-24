@@ -30,7 +30,7 @@
             android:id="@+id/etAmount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Amount to Sponsor (e.g., 1000)"
+            android:hint="Amount to Sponsor in shekels(e.g., 1000)"
             android:inputType="numberDecimal" />
 
         <!-- Place -->

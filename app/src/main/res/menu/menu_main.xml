@@ -9,20 +9,8 @@
             android:id="@+id/action_search_sponsors"
             android:title="חיפוש ספונסרים"
             app:showAsAction="never" />
-        <item
-            android:id="@+id/action_profile"
-            android:title="פרופיל אישי"
-            app:showAsAction="never" />
-        <item
-            android:id="@+id/action_create_campaign"
-            android:title="יצירת קמפיין"
-            app:showAsAction="never" />
-        <item
-            android:id="@+id/action_manage_campaigns"
-            android:title="ניהול קמפיינים"
-            app:showAsAction="never" />
-        <item
-            android:id="@+id/action_chat"
-            android:title="צ'אט"
-            app:showAsAction="never" />
+    <item
+        android:id="@+id/action_search_youthGroups"
+        android:title="חיפוש תנועות נוער"
+        app:showAsAction="never" />
     </menu>
