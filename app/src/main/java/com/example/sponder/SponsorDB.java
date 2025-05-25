@@ -56,7 +56,7 @@ public class SponsorDB extends AppCompatActivity {
             return amount;
         }
 
-        // שים לב: כאן בפרמטר זה int, עדיף לשנות ל-double כדי להתאים לשדה
+
         public void setAmount(int amount) {
             this.amount = amount;
         }

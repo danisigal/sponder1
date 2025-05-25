@@ -37,20 +37,7 @@ public class SearchYouthGroupActivity extends AppCompatActivity implements CardS
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_youth_group);
 
-        // הגדרת כפתור "חזרה לדף הבית"
-        Button backToHomeButton = findViewById(R.id.button_back_to_home);
-        backToHomeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // הודעה קצרה למשתמש
-                Toast.makeText(SearchYouthGroupActivity.this, "Going back to Home", Toast.LENGTH_SHORT).show();
-                // מעבר לדף הבית וסיום האקטיביטי הנוכחי
-                Intent intent = new Intent(SearchYouthGroupActivity.this, MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
-                finish();
-            }
-        });
+
 
         // קישור רכיב התצוגה של הקלפים מה-XML
         cardStackView = findViewById(R.id.card_stack_view);

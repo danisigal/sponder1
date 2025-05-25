@@ -44,18 +44,6 @@ public class SearchSponsorsActivity extends AppCompatActivity implements CardSta
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_sponsors);
 
-        // כפתור חזרה לדף הבית
-        Button backToHomeButton = findViewById(R.id.button_back_to_home);
-        backToHomeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // מעבר לדף הבית וסיום האקטיביטי הנוכחי
-                Intent intent = new Intent(SearchSponsorsActivity.this, MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
-                finish();
-            }
-        });
 
         // קישור רכיב התצוגה של הקלפים מה-XML
         cardStackView = findViewById(R.id.card_stack_view);
